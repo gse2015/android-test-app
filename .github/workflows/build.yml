@@ -23,11 +23,11 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Build with Gradle
-        uses: gradle/actions/gradle-build@v4
-        with:
-          arguments: assembleDebug
-          gradle-version: 8.5
+      - name: Build Debug APK
+        run: |
+          wget https://services.gradle.org/distributions/gradle-8.5-bin.zip
+          unzip -q gradle-8.5-bin.zip
+          ./gradle-8.5/bin/gradle assembleDebug
 
       - name: Upload Debug APK artifact
         uses: actions/upload-artifact@v4
